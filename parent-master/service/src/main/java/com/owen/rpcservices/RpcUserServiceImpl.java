@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @Auther: Administrator
- * @Date: 2018/10/17 19:10
- * @Description:
- */
+ * @Author zhusm
+ * @Description
+ * @Date 16:38 2018/10/31
+ **/
 @Slf4j
 @Service
 public class RpcUserServiceImpl {
