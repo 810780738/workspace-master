@@ -12,4 +12,10 @@ package com.xioazhu.rpccommon.rpc;/**
  *@Version 1.0
  */
 public class Client {
+
+
+    public static <T> T rpcInvoke(String beanName,String methodName,Object... paramters){
+
+        return null;
+    }
 }
