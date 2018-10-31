@@ -20,7 +20,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import javax.net.ssl.SSLException;
@@ -31,7 +30,7 @@ import java.net.UnknownHostException;
 
 /**
  *@ClassName HttpRequestUtils
- *@Description TODO
+ *@Description
  *@Author zhusm
  *@Date 2018/10/25 15:03    
  *@Version 1.0

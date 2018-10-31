@@ -1,8 +1,6 @@
-package com.xioazhu.rpccommon.rpc;/**
- * @Auther: Administrator
- * @Date: 2018/10/29 19:13
- * @Description:
- */
+package com.xioazhu.rpccommon.rpc;
+
+import com.xioazhu.rpccommon.BeanUtils.SpringBootBeanUtil;
 
 /**
  *@ClassName Client
@@ -15,7 +13,7 @@ public class Client {
 
 
     public static <T> T rpcInvoke(String beanName,String methodName,Object... paramters){
-
+        Object bean = SpringBootBeanUtil.getBean(beanName);
         return null;
     }
 }

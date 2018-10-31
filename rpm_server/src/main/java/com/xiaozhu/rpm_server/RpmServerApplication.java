@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Slf4j
-@ComponentScan(basePackages = {"com.xiaozhu.rpm_server.conf","com.xiaozhu.rpm_server.service"})
+@ComponentScan(basePackages = {"com.xiaozhu.rpm_server.conf","com.xiaozhu.rpm_server.service","com.xioazhu.rpccommon.BeanUtils"})
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = {"com.xiaozhu.rpm_server.dao"})//扫描继承了JpaRepository的子类
 @EntityScan(basePackages = "com.xioazhu.rpccommon.model")//扫描Entity

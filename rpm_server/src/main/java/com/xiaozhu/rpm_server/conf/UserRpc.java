@@ -1,5 +1,6 @@
 package com.xiaozhu.rpm_server.conf;
 
+import com.xioazhu.rpccommon.BeanUtils.SpringBootBeanUtil;
 import com.xioazhu.rpccommon.services.RpcUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

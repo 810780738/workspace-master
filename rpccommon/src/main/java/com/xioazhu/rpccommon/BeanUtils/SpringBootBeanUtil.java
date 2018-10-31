@@ -1,4 +1,4 @@
-package com.xiaozhu.rpm_server.conf;
+package com.xioazhu.rpccommon.BeanUtils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
