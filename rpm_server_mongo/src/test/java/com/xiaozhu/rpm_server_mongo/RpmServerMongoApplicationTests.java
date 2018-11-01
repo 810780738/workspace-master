@@ -11,6 +11,8 @@ public class RpmServerMongoApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		int i = Runtime.getRuntime().availableProcessors();
+		System.out.println(i);
 	}
 
 }

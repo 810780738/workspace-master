@@ -1,5 +1,6 @@
 package com.owen.rpcbena;
 
+import com.caucho.hessian.client.HessianProxyFactory;
 import com.xioazhu.rpccommon.services.RpcUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +27,15 @@ public class UserRpcBean {
         HessianProxyFactoryBean factory = new HessianProxyFactoryBean();
         factory.setServiceUrl("http://"+server+":"+port+"/UserService");
         factory.setServiceInterface(RpcUserService.class);
+        factory.setProxyFactory(getHessianProxyFactory());
+        return factory;
+    }
+
+    public HessianProxyFactory getHessianProxyFactory(){
+        HessianProxyFactory factory = new HessianProxyFactory();
+        factory.setUser("zsm");
+        factory.setPassword("123456");
+        factory.setReadTimeout(3000);
         return factory;
     }
 }

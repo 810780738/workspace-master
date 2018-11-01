@@ -27,7 +27,8 @@ public class RedisUtil {
 
     public void setKey(String key,String value,Boolean isTime) throws Exception {
         ValueOperations ops = template.opsForValue();
-        ops.set(key,value,30,TimeUnit.MINUTES);//设定一分钟过期
+        //设定一分钟过期
+        ops.set(key,value,30,TimeUnit.MINUTES);
         log.info("Redis保存数据成功key：{},value:{}",key,getValue(key));
     }
 

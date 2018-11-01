@@ -14,6 +14,7 @@ public class Client {
 
     public static <T> T rpcInvoke(String beanName,String methodName,Object... paramters){
         Object bean = SpringBootBeanUtil.getBean(beanName);
+        System.out.println(bean);
         return null;
     }
 }
