@@ -1,6 +1,8 @@
 package com.xioazhu.rpccommon.model;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -10,12 +12,30 @@ import java.io.Serializable;
  * @Description:
  */
 @Data
+@NoArgsConstructor
 public class ResultBean<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int code;
+    private int code = 200;
     private String message;
     private T data;
-    private Exception exception;
+    protected boolean success;
+
+    public ResultBean(T data, boolean success) {
+        this.data = data;
+        this.success = success;
+    }
+
+    public static <T> ResultBean<T> success(T data) {
+        return new ResultBean<T>(data,true);
+    }
+
+    public static <T> ResultBean<T> fail(String message,int code) {
+        ResultBean<T> resultBean = new ResultBean<T>();
+        resultBean.setMessage(message);
+        resultBean.setCode(code);
+        resultBean.setSuccess(false);
+        return resultBean;
+    }
 }

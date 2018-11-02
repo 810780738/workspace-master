@@ -9,6 +9,7 @@ import com.xioazhu.rpccommon.services.RpcUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -34,17 +35,15 @@ public class UserService implements RpcUserService {
         this.dataSourceConfig = dataSourceConfig;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public ResultBean<User> saveUser(Long id, String name, Integer age, String address) {
         log.info("服务端获取到客户端数据 id:{},name:{},age:{},address:{}",id,name,age,address);
-        ResultBean<User> result = new ResultBean<>();
         Number number = dataSourceConfig.getIdGenerator().generateId();
         Date dateTime = TimeUtils.getDateTime(null, new Date());
         User user = new User(number.longValue(),name, age, address,dateTime,dateTime);
         user = userRepository.save(user);
-        result.setCode(200);
-        result.setMessage("添加成功");
-        result.setData(user);
+        ResultBean<User> result = ResultBean.success(user);
         log.info("服务端返回数据：{}",result);
         return result;
     }
