@@ -1,16 +1,19 @@
 package com.xiaozhu.rpm_server.service;
 
 import com.xiaozhu.rpm_server.conf.DataSourceConfig;
+import com.xiaozhu.rpm_server.dao.JwtUserRepository;
 import com.xiaozhu.rpm_server.dao.UserRepository;
 import com.xioazhu.rpccommon.Utils.TimeUtils;
 import com.xioazhu.rpccommon.model.ResultBean;
 import com.xioazhu.rpccommon.model.User;
+import com.xioazhu.rpccommon.model.Users;
 import com.xioazhu.rpccommon.services.RpcUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +26,7 @@ import java.util.List;
 @Service
 public class UserService implements RpcUserService {
 
-
+    private JwtUserRepository jwtUserRepository;
 
     private UserRepository userRepository;
 
@@ -55,7 +58,27 @@ public class UserService implements RpcUserService {
 
     @Override
     public ResultBean<List<User>> findByName(String name) {
-        return null;
+        Users byUsername = null;
+        ResultBean<List<User>> objectResultBean = new ResultBean<>();
+        try {
+            byUsername = jwtUserRepository.findByUsername(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+            objectResultBean.setSuccess(false);
+            objectResultBean.setCode(5004);
+            objectResultBean.setMessage("查询出错");
+        }
+        List<User> users = new ArrayList<>();
+        users.add(
+                 User.builder()
+                .name(byUsername.getUsername())
+                .address(byUsername.getRole())
+                .addTime(byUsername.getAddtime())
+                .modifyTime(byUsername.getModifytime())
+                .build()
+        );
+        objectResultBean.setData(users);
+        return objectResultBean;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.xiaozhu.rpm_server.conf;
 
 import com.xioazhu.rpccommon.BeanUtils.SpringBootBeanUtil;
+import com.xioazhu.rpccommon.services.RpcJwtUserService;
 import com.xioazhu.rpccommon.services.RpcUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,16 @@ public class UserRpc {
         exporter.setService(bean);
         exporter.setServiceInterface(RpcUserService.class);
         log.info("UserService online");
+        return exporter;
+    }
+
+    @Bean("/UsersService")
+    public HessianServiceExporter usersService(){
+        RpcUserService bean = SpringBootBeanUtil.getBean(RpcUserService.class);
+        HessianServiceExporter exporter = new HessianServiceExporter();
+        exporter.setService(bean);
+        exporter.setServiceInterface(RpcJwtUserService.class);
+        log.info("UsersService online");
         return exporter;
     }
 
